@@ -28,10 +28,8 @@ jobs:
         if: steps.lingua-release.outputs.skip == 'false'
         run: |
           git clone --depth 1 --branch ${{ steps.lingua-release.outputs.version }} https://github.com/pemistahl/lingua-rs.git lingua-rs
-
-      - name: Install Rust
-        if: steps.lingua-release.outputs.skip == 'false'
-        uses: dtolnay/rust-action@stable
+      
+      - run: rustup update
 
       - name: Install wasm-pack
         if: steps.lingua-release.outputs.skip == 'false'

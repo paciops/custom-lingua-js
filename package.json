@@ -1,0 +1,27 @@
+{
+  "name": "lingua",
+  "collaborators": [
+    "Peter M. Stahl <pemistahl@gmail.com>"
+  ],
+  "description": "An accurate natural language detection library, suitable for short text and mixed-language text\n",
+  "version": "1.7.2",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pemistahl/lingua-rs"
+  },
+  "files": [
+    "lingua_bg.wasm",
+    "lingua.js",
+    "lingua.d.ts"
+  ],
+  "main": "lingua.js",
+  "homepage": "https://github.com/pemistahl/lingua-rs",
+  "types": "lingua.d.ts",
+  "keywords": [
+    "language-processing",
+    "language-detection",
+    "language-recognition",
+    "nlp"
+  ]
+}

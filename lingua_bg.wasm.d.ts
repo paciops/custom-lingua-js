@@ -1,0 +1,30 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const __wbg_languagedetector_free: (a: number, b: number) => void;
+export const __wbg_languagedetectorbuilder_free: (a: number, b: number) => void;
+export const languagedetector_computeLanguageConfidence: (a: number, b: number, c: number, d: number, e: number) => [number, number, number];
+export const languagedetector_computeLanguageConfidenceValues: (a: number, b: number, c: number) => any;
+export const languagedetector_detectLanguageOf: (a: number, b: number, c: number) => [number, number];
+export const languagedetector_detectMultipleLanguagesOf: (a: number, b: number, c: number) => any;
+export const languagedetectorbuilder_build: (a: number) => number;
+export const languagedetectorbuilder_fromAllLanguages: () => number;
+export const languagedetectorbuilder_fromAllLanguagesWithArabicScript: () => number;
+export const languagedetectorbuilder_fromAllLanguagesWithCyrillicScript: () => number;
+export const languagedetectorbuilder_fromAllLanguagesWithDevanagariScript: () => number;
+export const languagedetectorbuilder_fromAllLanguagesWithLatinScript: () => number;
+export const languagedetectorbuilder_fromAllLanguagesWithout: (a: number, b: number) => [number, number, number];
+export const languagedetectorbuilder_fromAllSpokenLanguages: () => number;
+export const languagedetectorbuilder_fromISOCodes6391: (a: number, b: number) => [number, number, number];
+export const languagedetectorbuilder_fromISOCodes6393: (a: number, b: number) => [number, number, number];
+export const languagedetectorbuilder_fromLanguages: (a: number, b: number) => [number, number, number];
+export const languagedetectorbuilder_withLowAccuracyMode: (a: number) => number;
+export const languagedetectorbuilder_withMinimumRelativeDistance: (a: number, b: number) => [number, number, number];
+export const languagedetectorbuilder_withPreloadedLanguageModels: (a: number) => number;
+export const __wbindgen_malloc: (a: number, b: number) => number;
+export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+export const __wbindgen_export_2: WebAssembly.Table;
+export const __wbindgen_free: (a: number, b: number, c: number) => void;
+export const __externref_table_dealloc: (a: number) => void;
+export const __externref_table_alloc: () => number;
+export const __wbindgen_start: () => void;

@@ -44,8 +44,9 @@ jobs:
       - name: Update package
         if: steps.lingua-release.outputs.skip == 'false'
         run: |
-          find . -maxdepth 1 ! -name '.git' ! -name '.github' ! -name '.' -exec rm -rf {} +
+          find . -maxdepth 1 ! -name '.git' ! -name '.github' ! -name 'lingua-rs' ! -name '.' -exec rm -rf {} +
           cp -r lingua-rs/pkg/* .
+          rm -rf lingua-rs
           echo "${{ steps.lingua-release.outputs.version }}" > VERSION
 
       - name: Commit and push

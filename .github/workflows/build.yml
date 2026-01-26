@@ -1,0 +1,60 @@
+name: Build Lingua WASM
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # Check daily for new releases
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v6
+
+      - name: Get latest lingua-rs release
+        id: lingua-release
+        run: |
+          LATEST=$(curl -s https://api.github.com/repos/pemistahl/lingua-rs/releases/latest | jq -r .tag_name)
+          echo "version=$LATEST" >> $GITHUB_OUTPUT
+          
+          if [ -f VERSION ] && [ "$(cat VERSION)" = "$LATEST" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Clone lingua-rs
+        if: steps.lingua-release.outputs.skip == 'false'
+        run: |
+          git clone --depth 1 --branch ${{ steps.lingua-release.outputs.version }} https://github.com/pemistahl/lingua-rs.git lingua-rs
+
+      - name: Install Rust
+        if: steps.lingua-release.outputs.skip == 'false'
+        uses: dtolnay/rust-action@stable
+
+      - name: Install wasm-pack
+        if: steps.lingua-release.outputs.skip == 'false'
+        run: cargo install wasm-pack
+
+      - name: Build WASM
+        if: steps.lingua-release.outputs.skip == 'false'
+        working-directory: lingua-rs
+        run: |
+          wasm-pack build --target nodejs -- --no-default-features --features "english,dutch,french,swedish"
+
+      - name: Update package
+        if: steps.lingua-release.outputs.skip == 'false'
+        run: |
+          find . -maxdepth 1 ! -name '.git' ! -name '.github' ! -name '.' -exec rm -rf {} +
+          cp -r lingua-rs/pkg/* .
+          echo "${{ steps.lingua-release.outputs.version }}" > VERSION
+
+      - name: Commit and push
+        if: steps.lingua-release.outputs.skip == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update to lingua-rs ${{ steps.lingua-release.outputs.version }}" || exit 0
+          git push

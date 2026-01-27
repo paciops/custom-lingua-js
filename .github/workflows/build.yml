@@ -32,7 +32,9 @@ jobs:
         run: |
           git clone --depth 1 --branch ${{ steps.lingua-release.outputs.version }} https://github.com/pemistahl/lingua-rs.git lingua-rs
       
-      - run: rustup update
+      - name: Update Rust toolchain
+        if: steps.lingua-release.outputs.skip == 'false'
+        run: rustup update
 
       - name: Install wasm-pack
         if: steps.lingua-release.outputs.skip == 'false'

@@ -14,11 +14,21 @@ This build includes support for:
 
 ## How It Works
 
-This repository is automatically updated via a GitHub Actions workflow that:
+This repository is automatically updated via a GitHub Actions workflow (`.github/workflows/build.yml`) that:
 
-1. Checks daily for new releases of [lingua-rs](https://github.com/pemistahl/lingua-rs)
-2. Clones the latest release and builds it to WebAssembly using `wasm-pack`
-3. Tags and publishes the compiled WASM package to this repository
+1. **Runs daily** via cron schedule (`0 0 * * *`) or manually via workflow_dispatch
+2. **Checks for new releases** by querying the GitHub API for the latest lingua-rs release tag
+3. **Compares versions** with the local `VERSION` file to avoid unnecessary rebuilds
+4. **If a new version is detected**:
+   - Clones the specific release tag of lingua-rs
+   - Updates the Rust toolchain
+   - Installs wasm-pack
+   - Builds WASM with custom features: `--no-default-features --features "english,dutch,french,swedish"`
+   - Replaces repository contents with the built WASM package
+   - Updates the VERSION file
+   - Commits changes and creates a git tag matching the lingua-rs version
+   - Pushes to the main branch
+5. **If no new version** exists, all build steps are skipped to save resources
 
 The build targets Node.js (`--target nodejs`).
 

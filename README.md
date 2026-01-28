@@ -16,7 +16,7 @@ This build includes support for:
 
 This repository is automatically updated via a GitHub Actions workflow (`.github/workflows/build.yml`) that:
 
-1. **Runs daily** via cron schedule (`0 0 * * *`) or manually via workflow_dispatch
+1. **Runs daily** via cron schedule (`0 9 * * *` - 9 AM UTC / 10 AM CET / 11 AM CEST) or manually via workflow_dispatch
 2. **Checks for new releases** by querying the GitHub API for the latest lingua-rs release tag
 3. **Compares versions** with the local `VERSION` file to avoid unnecessary rebuilds
 4. **If a new version is detected**:

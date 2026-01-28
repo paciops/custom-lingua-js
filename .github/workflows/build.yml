@@ -3,7 +3,7 @@ name: Build Lingua WASM
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # Check daily for new releases
+    - cron: '0 9 * * *'  # Check daily at 9 AM UTC (10 AM CET/11 AM CEST)
 
 permissions:
   contents: write
@@ -32,7 +32,9 @@ jobs:
         run: |
           git clone --depth 1 --branch ${{ steps.lingua-release.outputs.version }} https://github.com/pemistahl/lingua-rs.git lingua-rs
       
-      - run: rustup update
+      - name: Update Rust toolchain
+        if: steps.lingua-release.outputs.skip == 'false'
+        run: rustup update
 
       - name: Install wasm-pack
         if: steps.lingua-release.outputs.skip == 'false'

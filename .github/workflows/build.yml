@@ -3,7 +3,7 @@ name: Build Lingua WASM
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 9 * * *'  # Check daily for new releases at 10 AM CET (9 AM UTC)
+    - cron: '0 9 * * *'  # Check daily at 9 AM UTC (10 AM CET/11 AM CEST)
 
 permissions:
   contents: write

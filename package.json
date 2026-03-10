@@ -4,7 +4,7 @@
     "Peter M. Stahl <pemistahl@gmail.com>"
   ],
   "description": "An accurate natural language detection library, suitable for short text and mixed-language text\n",
-  "version": "1.7.2",
+  "version": "1.8.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",

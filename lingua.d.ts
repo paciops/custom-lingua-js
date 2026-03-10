@@ -1,11 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
-/**
- * This class detects the language of given input text.
- */
+
 export class LanguageDetector {
   private constructor();
   free(): void;
+  [Symbol.dispose](): void;
   /**
    * Detects the language of given input text.
    * If the language cannot be reliably detected, `undefined` is returned.
@@ -47,12 +46,11 @@ export class LanguageDetector {
    */
   computeLanguageConfidenceValues(text: string): any;
 }
-/**
- * This class configures and creates an instance of `LanguageDetector`.
- */
+
 export class LanguageDetectorBuilder {
   private constructor();
   free(): void;
+  [Symbol.dispose](): void;
   /**
    * Creates and returns an instance of `LanguageDetectorBuilder`
    * with the specified `languages`.
